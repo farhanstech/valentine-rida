@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rida 💖 Farhan</title>
+
+    <!-- GOOGLE FONTS -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #ff4d6d;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        p {
+            color: #444;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 28px;
+            padding: 2.2rem 1.6rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeUp 0.8s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ff4d6d, #ff758f);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.2rem;
+            box-shadow: 0 8px 18px rgba(255, 77, 109, 0.4);
+        }
+
+        /* COUNTER */
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .time-box {
+            background: #fff0f3;
+            border-radius: 14px;
+            padding: 0.7rem 1.1rem;
+            min-width: 85px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ff4d6d;
+        }
+
+        /* HEART GRID */
+        .heart-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            max-width: 360px;
+            margin: 2rem auto;
+        }
+
+        .heart-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        /* YES NO */
+        .choice {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        #noBtn {
+            background: #eee;
+            color: #333;
+            box-shadow: none;
+        }
+
+        .result {
+            display: none;
+            margin-top: 1.2rem;
+            font-size: 1.3rem;
+            color: #ff4d6d;
+        }
+
+        /* CELEBRATION */
+        #celebration {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 154, 158, 0.96);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #typeText {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.6rem;
+            color: white;
+            margin-top: 1.6rem;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -30px;
+            animation: floatUp linear infinite;
+            opacity: 0.75;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-120vh);
+            }
+        }
+
+        @media (max-width: 520px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            #typeText {
+                font-size: 2.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+            <h1>Hey Rida 💕</h1>
+            <p>I want to show you something… one step at a time 💌</p>
+            <button class="btn" onclick="nextSection()">Start Our Story ✨</button>
+        </div>
+
+        <div class="section card">
+            <h2>⏳ Our Time Together</h2>
+            <div class="counter">
+                <div class="time-box"><span id="days">0</span>Days</div>
+                <div class="time-box"><span id="hours">0</span>Hours</div>
+                <div class="time-box"><span id="minutes">0</span>Minutes</div>
+                <div class="time-box"><span id="seconds">0</span>Seconds</div>
+            </div>
+            <button class="btn" onclick="nextSection()">Next 💕</button>
+        </div>
+
+        <div class="section card">
+            <h2>💖 Our Memories</h2>
+            <div class="heart-grid">
+                <div class="hidden"></div><img src="photos/1.jpg"><img src="photos/2.jpg">
+                <div class="hidden"></div>
+                <div class="hidden"></div>
+                <img src="photos/3.jpg"><img src="photos/4.jpg"><img src="photos/5.jpg"><img src="photos/6.jpg">
+                <div class="hidden"></div>
+                <img src="photos/7.jpg"><img src="photos/8.jpg"><img src="photos/9.jpg"><img src="photos/10.jpg"><img
+                    src="photos/11.jpg">
+                <div class="hidden"></div><img src="photos/12.jpg"><img src="photos/13.jpg"><img src="photos/14.jpg">
+                <div class="hidden"></div>
+                <div class="hidden"></div>
+                <div class="hidden"></div><img src="photos/15.jpg">
+                <div class="hidden"></div>
+                <div class="hidden"></div>
+            </div>
+            <button class="btn" onclick="nextSection()">Next 🥹</button>
+        </div>
+
+        <div class="section card">
+            <h2>✨ Our Story</h2>
+            <p>
+                It all began on <b>28th July 2020</b>.
+                A simple conversation that slowly turned into something my heart never wanted to lose.
+                <br><br>
+                Our first movie date on <b>25th January 2021</b> made everything clear — you were special.
+                <br><br>
+                And on <b>4th April 2026</b>, we begin forever.
+            </p>
+            <button class="btn" onclick="nextSection()">Final Question 💍</button>
+        </div>
+
+        <div class="section card">
+            <h2>Will You Be My Valentine? 💖</h2>
+            <div class="choice">
+                <button class="btn" id="yesBtn">Yes, Always 💕</button>
+                <button class="btn" id="noBtn">No 🙃</button>
+            </div>
+            <div class="result" id="result">You just made my heart the happiest 🥰</div>
+        </div>
+
+    </div>
+
+    <div id="celebration">
+        <img src="photos/together.jpg"
+            style="max-width:90%;max-height:70vh;border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,0.35);z-index:2;" />
+        <div id="typeText"></div>
+        <p style="color:white">This is just the beginning of forever ✨</p>
+    </div>
+
+    <audio id="loveSong" src="music/love.mp3"></audio>
+
+    <script>
+        let current = 0;
+        const sections = document.querySelectorAll('.section');
+
+        function nextSection() {
+            if (current < sections.length) {
+                sections[current].classList.add('active');
+                current++;
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        }
+
+        const startDate = new Date('2020-07-28T00:00:00');
+        setInterval(() => {
+            const diff = Date.now() - startDate;
+            days.textContent = Math.floor(diff / 86400000);
+            hours.textContent = Math.floor(diff / 3600000) % 24;
+            minutes.textContent = Math.floor(diff / 60000) % 60;
+            seconds.textContent = Math.floor(diff / 1000) % 60;
+        }, 1000);
+
+        noBtn.addEventListener('mouseenter', () => {
+            noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 120 - 60}px)`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            result.style.display = 'block';
+            loveSong.play();
+            celebration.style.display = 'flex';
+
+            const text = 'Rida, I love you ❤️';
+            let i = 0;
+            typeText.textContent = '';
+            const typer = setInterval(() => {
+                typeText.textContent += text.charAt(i++);
+                if (i === text.length) clearInterval(typer);
+            }, 120);
+
+            for (let j = 0; j < 45; j++) {
+                const h = document.createElement('div');
+                h.className = 'floating-heart';
+                h.textContent = '💖';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.fontSize = (Math.random() * 22 + 14) + 'px';
+                h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                celebration.appendChild(h);
+                setTimeout(() => h.remove(), 8000);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
